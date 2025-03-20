@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Dark Side of Digital Finance - A Vader's Tale</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&family=Imperial+Script&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .space-grotesk { font-family: 'Space Grotesk', sans-serif; }
+        .imperial { font-family: 'Imperial Script', cursive; }
+        .gradient-dark {
+            background: linear-gradient(135deg, #000000 0%, #1a1a2e 100%);
+        }
+        .text-shadow {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .poem-text {
+            font-size: 1.25rem;
+            line-height: 2;
+        }
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .breathing-effect {
+            animation: breathe 4s infinite;
+        }
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 1s infinite;
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+    </style>
+</head>
+<body class="gradient-dark min-h-screen text-gray-100 space-grotesk relative overflow-x-hidden">
+    <!-- Star background -->
+    <div id="starfield" class="fixed top-0 left-0 w-full h-full pointer-events-none"></div>
+
+    <div class="container mx-auto px-4 py-8">
+        <header class="text-center mb-12">
+            <h1 class="text-5xl md:text-6xl mb-4 imperial text-red-600 text-shadow">
+                The Dark Side of Digital Finance
+            </h1>
+            <p class="text-xl text-gray-400">A Poetic Tale of Vader's PayPal Adventures</p>
+        </header>
+
+        <main class="max-w-3xl mx-auto">
+            <div class="bg-black bg-opacity-50 p-8 rounded-lg backdrop-blur-sm shadow-2xl mb-8">
+                <div id="poem" class="poem-text space-y-8 mb-8">
+                    <p class="text-center">
+                        In chambers dark where stars align,<br>
+                        Lord Vader ponders wealth divine.<br>
+                        His PayPal balance runs too low,<br>
+                        As battle plans begin to grow.
+                    </p>
+                    
+                    <p class="text-center">
+                        Through digital realms of ones and zeros,<br>
+                        Where credits flow like cosmic echoes,<br>
+                        He seeks a path to riches free,<br>
+                        While Death Star plans await with glee.
+                    </p>
+                    
+                    <p class="text-center">
+                        "The Force is strong with PayPal's might,<br>
+                        But empty balance brings such fright.<br>
+                        If only there were ways to gain,<br>
+                        Without the Emperor's watchful reign."
+                    </p>
+                    
+                    <p class="text-center">
+                        His breathing heavy, thoughts profound,<br>
+                        As notification alerts sound.<br>
+                        "Insufficient funds," they dare declare,<br>
+                        While troops await repairs with care.
+                    </p>
+                    
+                    <p class="text-center">
+                        But wisdom speaks through ancient code,<br>
+                        Of honest work and paths that showed,<br>
+                        That true wealth comes from effort pure,<br>
+                        Not shortcuts that might not endure.
+                    </p>
+                    
+                    <p class="text-center">
+                        So Vader learns in cosmic night,<br>
+                        That PayPal balance must be right.<br>
+                        Through proper means and labor true,<br>
+                        Not Force-tricks that he once knew.
+                    </p>
+                </div>
+
+                <div class="flex justify-center space-x-4">
+                    <button id="playButton" class="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-full transition-all duration-300 flex items-center space-x-2 breathing-effect">
+                        <i class="fas fa-play"></i>
+                        <span>Play Vader's Tale</span>
+                    </button>
+                    <button id="pauseButton" class="bg-gray-700 hover:bg-gray-600 text-white px-6 py-3 rounded-full transition-all duration-300 flex items-center space-x-2 hidden">
+                        <i class="fas fa-pause"></i>
+                        <span>Pause</span>
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <footer class="text-center text-gray-400 mt-12">
+            <p>An Ethical School Poetry Project</p>
+            <p class="text-sm mt-2">© The Empire's Educational Initiative</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

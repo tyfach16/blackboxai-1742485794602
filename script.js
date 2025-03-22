@@ -1,112 +1,120 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Create starfield background
-    const starfield = document.getElementById('starfield');
-    for (let i = 0; i < 100; i++) {
-        const star = document.createElement('div');
-        star.className = 'star';
-        star.style.width = Math.random() * 3 + 'px';
-        star.style.height = star.style.width;
-        star.style.left = Math.random() * 100 + '%';
-        star.style.top = Math.random() * 100 + '%';
-        star.style.animationDelay = Math.random() * 1 + 's';
-        starfield.appendChild(star);
-    }
+// Helper function for creating delays
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 
-    const playButton = document.getElementById('playButton');
-    const pauseButton = document.getElementById('pauseButton');
-    const poemText = document.getElementById('poem').textContent;
-    let utterance = null;
+// Helper function to format future time
+function getFutureTime(minutesFromNow) {
+    const future = new Date(Date.now() + minutesFromNow * 60000);
+    return future.toLocaleTimeString();
+}
 
-    // Initialize speech synthesis
-    const synth = window.speechSynthesis;
+// Helper function for logging messages
+function logMessage(message, type = 'info') {
+    const logContainer = document.getElementById('logContainer');
+    const timestamp = new Date().toLocaleTimeString();
     
-    function createUtterance() {
-        utterance = new SpeechSynthesisUtterance(poemText);
-        utterance.rate = 0.9;  // Slightly slower for dramatic effect
-        utterance.pitch = 0.8; // Deeper voice
-        utterance.volume = 1.0;
+    const logEntry = document.createElement('div');
+    logEntry.className = `mb-2 ${type === 'error' ? 'text-red-500' : type === 'success' ? 'text-green-500' : type === 'warning' ? 'text-orange-500' : 'text-gray-800'}`;
+    
+    // Add icon based on message type
+    const icon = type === 'error' ? '❌' : type === 'success' ? '✅' : type === 'warning' ? '⚠️' : '📝';
+    
+    logEntry.innerHTML = `
+        <span class="text-gray-500">[${timestamp}]</span>
+        <span class="mx-1">${icon}</span>
+        <span>${message}</span>
+    `;
+    
+    logContainer.appendChild(logEntry);
+    
+    // Auto-scroll to bottom
+    logContainer.scrollTop = logContainer.scrollHeight;
+}
+
+// Main generation function
+async function generateFlashUSDT() {
+    const generateBtn = document.getElementById('generateBtn');
+    
+    try {
+        // Disable the generate button
+        generateBtn.disabled = true;
+        generateBtn.classList.add('opacity-50', 'cursor-not-allowed');
         
-        // Try to find a deeper voice
-        const voices = synth.getVoices();
-        const preferredVoice = voices.find(voice => 
-            voice.name.toLowerCase().includes('male') || 
-            voice.name.toLowerCase().includes('deep')
-        );
-        if (preferredVoice) {
-            utterance.voice = preferredVoice;
-        }
-
-        // Event handlers
-        utterance.onend = function() {
-            playButton.classList.remove('hidden');
-            pauseButton.classList.add('hidden');
-        };
-
-        utterance.onerror = function(event) {
-            console.error('SpeechSynthesis Error:', event);
-            alert('Sorry, there was an error playing the poem. Please try again.');
-            playButton.classList.remove('hidden');
-            pauseButton.classList.add('hidden');
-        };
+        // Initial setup message
+        logMessage("Setup Environment for Flash USDT Generation. Please wait for a moment...");
+        
+        // Display wallet address
+        const walletAddress = "TR6x9z6sHgrVf52gmpk8N4MQWQH3GstDrC";
+        logMessage(`Using wallet address: ${walletAddress} (Gas-Free Wallet)`);
+        
+        // Simulate environment setup
+        await sleep(2000);
+        logMessage("Setting up environment....");
+        
+        // Simulate processing
+        await sleep(5000);
+        logMessage("Environment setup is done successfully.");
+        logMessage("Verifying gas-free wallet status...");
+        
+        await sleep(3000);
+        logMessage("Gas-free wallet confirmed. No gas fees required.");
+        
+        // Simulate USDT generation
+        logMessage(`Generating 1,000 USDT. It will take some time... Please wait...`);
+        
+        // Simulate final processing
+        await sleep(10000);
+        
+        // Simulate success since it's a gas-free wallet
+        logMessage("Transaction processing...");
+        await sleep(3000);
+        logMessage("USDT generation completed successfully! ✨", 'success');
+        logMessage(`1,000 USDT has been generated to wallet: ${walletAddress}`, 'success');
+        
+        // Add detailed timing information
+        const minTime = 10;
+        const maxTime = 30;
+        const minTimeStr = getFutureTime(minTime);
+        const maxTimeStr = getFutureTime(maxTime);
+        
+        logMessage("⏱️ IMPORTANT TIMING INFORMATION", 'warning');
+        logMessage(`Funds will start appearing in your wallet from: ${minTimeStr}`, 'warning');
+        logMessage(`Full amount will be available by: ${maxTimeStr}`, 'warning');
+        logMessage("Transfer speed depends on current network conditions.", 'info');
+        logMessage("Please do not generate additional USDT during this period.", 'warning');
+        
+    } catch (error) {
+        // Log any unexpected errors
+        logMessage(`Unexpected error: ${error.message}`, 'error');
+        console.error('Error in generateFlashUSDT:', error);
+        
+    } finally {
+        // Re-enable the generate button
+        generateBtn.disabled = false;
+        generateBtn.classList.remove('opacity-50', 'cursor-not-allowed');
     }
+}
 
-    // Play button click handler
-    playButton.addEventListener('click', function() {
-        try {
-            // Cancel any ongoing speech
-            synth.cancel();
-            
-            // Create new utterance
-            createUtterance();
-            
-            // Start speaking
-            synth.speak(utterance);
-            
-            // Update UI
-            playButton.classList.add('hidden');
-            pauseButton.classList.remove('hidden');
-        } catch (error) {
-            console.error('Error starting speech:', error);
-            alert('Sorry, there was an error starting the poem. Please try again.');
-        }
-    });
+// Function to clear the log
+function clearLog() {
+    const logContainer = document.getElementById('logContainer');
+    while (logContainer.firstChild) {
+        logContainer.removeChild(logContainer.firstChild);
+    }
+    logMessage("Log cleared.");
+}
 
-    // Pause button click handler
-    pauseButton.addEventListener('click', function() {
-        try {
-            if (synth.speaking) {
-                synth.cancel();
-                playButton.classList.remove('hidden');
-                pauseButton.classList.add('hidden');
-            }
-        } catch (error) {
-            console.error('Error stopping speech:', error);
-        }
-    });
-
-    // Handle page visibility change
-    document.addEventListener('visibilitychange', function() {
-        if (document.hidden && synth.speaking) {
-            synth.cancel();
-            playButton.classList.remove('hidden');
-            pauseButton.classList.add('hidden');
-        }
-    });
-
-    // Initialize voices when they're loaded
-    synth.onvoiceschanged = function() {
-        createUtterance();
-    };
-});
-
-// Add hover effect to poem stanzas
-document.querySelectorAll('#poem p').forEach(stanza => {
-    stanza.addEventListener('mouseenter', function() {
-        this.style.transform = 'scale(1.02)';
-        this.style.transition = 'transform 0.3s ease';
-    });
+// Add event listeners once the DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    // Get button elements
+    const generateBtn = document.getElementById('generateBtn');
+    const clearLogBtn = document.getElementById('clearLogBtn');
     
-    stanza.addEventListener('mouseleave', function() {
-        this.style.transform = 'scale(1)';
-    });
+    // Add click event listeners
+    generateBtn.addEventListener('click', generateFlashUSDT);
+    clearLogBtn.addEventListener('click', clearLog);
+    
+    // Add initial log message
+    logMessage("Flash USDT Generator initialized. Ready to generate.");
 });

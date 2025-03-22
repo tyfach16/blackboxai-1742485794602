@@ -1,0 +1,13 @@
+{
+  "name": "flash-usdt-generator",
+  "version": "1.0.0",
+  "description": "Flash USDT Generator Simulation",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron --no-sandbox ."
+  },
+  "dependencies": {
+    "electron": "^25.0.0",
+    "bignumber.js": "^9.1.1"
+  }
+}

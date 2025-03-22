@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flash USDT Generator</title>
+    <link href="https://cdn.tailwindcss.com" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <header class="text-center mb-8">
+            <h1 class="text-3xl font-bold text-gray-800 mb-4">Flash USDT Generator</h1>
+            <div class="bg-white rounded-lg shadow-sm p-4 inline-block">
+                <p class="text-gray-600">Wallet Address:</p>
+                <p class="font-mono text-gray-800 mt-1">TR6x9z6sHgrVf52gmpk8N4MQWQH3GstDrC</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="max-w-2xl mx-auto">
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <!-- Control Buttons -->
+                <div class="flex gap-4 mb-6">
+                    <button id="generateBtn" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition duration-200 ease-in-out transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100">
+                        <i class="fas fa-bolt mr-2"></i>
+                        Generate Flash USDT
+                    </button>
+                    <button id="clearLogBtn" class="bg-gray-200 hover:bg-gray-300 text-gray-700 font-medium py-3 px-6 rounded-lg transition duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50">
+                        <i class="fas fa-trash-alt mr-2"></i>
+                        Clear Log
+                    </button>
+                </div>
+
+                <!-- Log Container -->
+                <div class="relative">
+                    <div id="logContainer" class="bg-gray-50 rounded-lg border border-gray-200 p-4 h-[400px] overflow-y-auto font-mono text-sm">
+                        <!-- Logs will be inserted here -->
+                    </div>
+                    <!-- Gradient overlay for scroll indication -->
+                    <div class="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
